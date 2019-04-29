@@ -5,12 +5,18 @@
 </template>
 
 <script>
-import axios from 'axios';
+// import axios from 'axios';
 import { mapState, mapActions } from 'vuex';
+import { api1 } from '@/services/index';
 export default {
   name: 'HelloWorld',
   mounted () {
-    axios.get('')
+    api1({key1: '123'}).then(res => {
+      // deal res
+      console.log(res)
+    }).catch(err => {
+      console.log(err)
+    })
     this.changeText()
   },
   computed: {

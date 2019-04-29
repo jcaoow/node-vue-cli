@@ -1,15 +1,15 @@
 let OPENTEST, ENV
-const POST = 20026
+const PORT = 20026
 
 if (process.env.NODE_ENV === 'uat') {
-  OPENTEST = '';
+  OPENTEST = 'http://proxyOrigin';
   ENV = 'uat';
 } else if (process.env.NODE_ENV === 'pro') {
-  OPENTEST = '';
+  OPENTEST = 'http://proxyOrigin';
   ENV = 'pro';
 } else {
   //test
-  OPENTEST = '';
+  OPENTEST = 'http://proxyOrigin';
   ENV = 'test';
 }
 
@@ -26,5 +26,5 @@ const proxyTable = {
 module.exports = {
   proxyTable,
   ENV,
-  POST
+  PORT
 }

@@ -1,6 +1,6 @@
 const express = require('express');
 const proxy = require('http-proxy-middleware');
-const { proxyTable, POST } = require('./config');
+const { proxyTable, PORT } = require('./config');
 const path = require('path');
 const axios = require('axios')
 
@@ -13,7 +13,10 @@ Object.keys(proxyTable).forEach(context => {
 
 app.get('/node/*', (req, res) => {
   const path = req.path
-  axios.get(`http://127.0.0.1:${POST}${path.replace('/node', '')}`, req.query).then(r => {
+  // 接口返回
+  res.send('12331')
+  // 接口转发
+  axios.get(`http://127.0.0.1:${PORT}${path.replace('/node', '')}`, req.query).then(r => {
     r.data = {
       code: 1
     }
@@ -26,6 +29,6 @@ app.get('/node/*', (req, res) => {
 app.use(express.static(path.resolve(__dirname, '../dist')));
 app.use(express.static(path.resolve(__dirname, '../static')));
 
-app.listen(POST, function() {
-  console.log(`app run at: ${POST}`);
+app.listen(PORT, function() {
+  console.log(`app run at: ${PORT}`);
 });
